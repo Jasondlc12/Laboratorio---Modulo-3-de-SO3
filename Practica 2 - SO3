@@ -1,0 +1,68 @@
+Laboratorio SO3.
+Practica 1.
+####################################
+Comandos utilizados
+###################################
+date
+sudo su
+nano backup.sh
+chmod +x backup.sh
+./backup.sh
+
+
+
+#!/bin/bash
+
+# Definir variables
+y="/home/yeison-20241190"
+ITLA="$y/backups"
+
+# Obtener fecha y hora en formato dd-mm-yyyy_HH-MM
+DATOSTIEMPO=$(date +"%d-%m-%Y_%H-%M")
+
+# Nombre del archivo de backup
+COPIADEARCHIVOS="backup_$DATOSTIEMPO.tar.gz"
+
+# Crear el directorio de backups si no existe
+mkdir -p "$ITLA"
+
+# Crear el archivo comprimido con tar y manejar errores
+tar -czf "$ITLA/$COPIADEARCHIVOS" -C "$y" . 2>/dev/null
+
+# Verificar si el archivo se creó correctamente
+if [[ -f "$ITLA/$COPIADEARCHIVOS" ]]; then
+    echo "Backup creado exitosamente: $ITLA/$COPIADEARCHIVOS"
+else
+    echo "Error: No se pudo crear el backup."
+fi
+==================================================================================================
+nano ifconfig.sh
+chmod +x ifconfig.sh
+./ifconfig.sh
+
+#!/bin/bash
+
+# Definir la ruta del escritorio
+manzana="/home/yeison-20241190/Escritorio"
+
+# Pedir el nombre del archivo
+read -p "Ingrese el nombre del archivo (sin extensión): " pera
+
+# Verificar si el nombre está vacío
+if [[ -z "$pera" ]]; then
+    echo "Error: El nombre no puede estar vacío."
+    exit 1
+fi
+
+# Agregar la extensión .txt
+sandia="$manzana/$pera.txt"
+
+# Guardar la salida de ip a (en vez de ifconfig) en el archivo
+ip a > "$sandia"
+
+# Verificar si el archivo se creó correctamente
+if [[ -f "$sandia" ]]; then
+    echo "Información de red guardada en: $sandia"
+else
+    echo "Error: No se pudo guardar la información de red."
+fi

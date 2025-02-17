@@ -1,0 +1,30 @@
+ping <IP_de_tu_VM>
+==================================================================
+PARA ACTICAR EL ICMP
+==================================================================
+sudo firewall-cmd --add-icmp-block-inversion=false --permanent
+sudo firewall-cmd --reload
+==================================================================
+Habilitar el servicio SSH en Linux y ver si está habilitado
+==================================================================
+sudo systemctl status sshd
+sudo dnf install -y openssh-server
+sudo systemctl enable --now sshd
+==================================================================
+ Probar conexión SSH desde Windows
+==================================================================
+ssh yeison-20241190@<IP_de_tu_VM>
+==================================================================
+Generar llaves SSH en Windows
+==================================================================
+ssh-keygen -t rsa -b 4096
+=================================================================
+ls -a
+mkdir .ssh
+nano authorized_keys
+ctrl + o
+ctrl + x
+cat authorized_keys
+exit
+ssh yeison-20241190@<IP_de_tu_VM>
+date
